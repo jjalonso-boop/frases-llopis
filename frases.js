@@ -5,7 +5,7 @@ const frases = [
     "La alegría siempre la da Dios.",
     "Que todo sirva para intensificar el amor recibido de Dios.",
     "La eficacia de todo se encuentra en el amor.",
-    "En tu vida, dale tiempo al silenciamiento; es tu encuentro con lo importante. A seguir mejorando.",
+    "En tu vida, dale tiempo al silenciamiento; es tu encuentro con lo importante.",
     "Solo se vive la sabiduría si la recibes de Dios.",
     "Llenarte de vida es llenarte de los dones de Dios. El camino se hace ligero.",
     "Si te entregas a la voluntad de Dios, abres las puertas a la paz.",
@@ -156,4 +156,5 @@ const frases = [
     "Lo que da brillo a nuestros ojos es la virtud de la esperanza.",
     "Muy importante: siempre Dios el protagonista; todo vuelve a su orden.",
 ];
+
 
