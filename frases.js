@@ -66,7 +66,6 @@ const frases = [
     "Solo el encuentro con Dios y con los hermanos da plenitud a nuestra vida.",
     "Si nuestra respuesta es de amor, siempre acertaremos.",
     "Salir de nosotros mismos es privilegio del amor.",
-    "Muchas gracias por tu palabra permanente y acertada.",
     "Todo en tu vida muestra un nuevo camino de amor.",
     "La oscuridad es fruto de la mediocridad. La luz aparece en la entrega.",
     "Dios habla contigo, si eres fiel en las cosas pequeñas.",
@@ -156,5 +155,6 @@ const frases = [
     "Lo que da brillo a nuestros ojos es la virtud de la esperanza.",
     "Muy importante: siempre Dios el protagonista; todo vuelve a su orden.",
 ];
+
 
 
