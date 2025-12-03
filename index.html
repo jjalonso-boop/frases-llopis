@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pensamientos de Llopis</title>
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#66a6ff" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+
+  <style>
+    /* Fondo animado */
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      background: linear-gradient(45deg, #89f7fe, #66a6ff, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradientAnim 15s ease infinite;
+      color: #333;
+    }
+    @keyframes gradientAnim {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      max-width: 500px;
+      width: 90%;
+    }
+    h1 {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .frase {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #222;
+      min-height: 3em;
+      transition: opacity 0.4s ease;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+   
+    <p class="frase" id="frase">Cargando...</p>
+
+  </div>
+
+  <!-- 🔹 Cargar archivo de frases externo -->
+  <script src="frases.js"></script>
+
+  <script>
+    function nuevaFrase() {
+      if (!frases || frases.length === 0) return;
+      const elemento = document.getElementById("frase");
+      const indice = Math.floor(Math.random() * frases.length);
+      elemento.style.opacity = 0;
+      setTimeout(() => {
+        elemento.textContent = frases[indice];
+        elemento.style.opacity = 1;
+      }, 200);
+    }
+
+    window.onload = nuevaFrase;
+
+    // Registrar Service Worker para offline
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("✅ Service Worker registrado"))
+        .catch(err => console.error("❌ Error al registrar el Service Worker:", err));
+    }
+  </script>
+</body>
+</html>
