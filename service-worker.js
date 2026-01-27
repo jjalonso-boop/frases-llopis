@@ -2,6 +2,7 @@
 const CACHE_NAME = "frases-pwa-v1";
 const ARCHIVOS = [
   "index.html",
+  "frases.js",
   "manifest.json",
   "service-worker.js",
   "icon-192.png",
@@ -32,3 +33,4 @@ self.addEventListener("fetch", (event) => {
     )
   );
 });
+
