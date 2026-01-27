@@ -169,9 +169,9 @@ const frases = [
     "La Navidad es el libro abierto que hemos de aprender a leer; contiene todos los secretos reales de nuestra felicidad.",
     "Lo que recibimos del Señor es la fuerza que nos hace atravesar todas nuestras dificultades.",
     "Todo se lee correctamente si es Dios quien preside nuestra vida.",
-    "Sé generoso en la entrega, sin reservas; es la garantía de que nunca te faltará luz en tu camino",
+    "Sé generoso en la entrega, sin reservas; es la garantía de que nunca te faltará luz en tu camino.",
     "Siempre nuestra vida llega a su plenitud con los hermanos. Son la presencia viva de un Dios que, con ellos, nos acompaña.",
-    "La fraternidad convierte los conflictos en motivo de crecimiento."
+    "La fraternidad convierte los conflictos en motivo de crecimiento.",
     "Todo se vive y se saborea en el interior.",
     "En la navidad se refleja, con claridad, la verdad de tu vida. Contempla siempre la Navidad.",
     "Es Dios quien te ha escogido con su ternura; eso lo llevas en tu corazón; derrámala sobre los demás.",
@@ -179,7 +179,7 @@ const frases = [
     "Con la Navidad se descubre el gozo que nunca se acaba.",
     "Todo lo que Dios deposita en tu corazón llega a su plenitud, cuando ves que brilla en los demás.",
     "Distinguimos la luz del Señor, porque es comunión con los hermanos.",
-    "Mira con amor tu familia; es la cuna del amor de Dios; vuestro amor es la aportación más hermosa que podéis hacer a la Iglesia y al mundo. Felicidades.",
+    "Mira con amor tu familia; es la cuna del amor de Dios; vuestro amor es la aportación más hermosa que podéis hacer a la Iglesia y al mundo.",
     "La claridad nace en la escucha a Dios y a los demás.",
     "El gozo hace su morada en ti, si das a los demás lo mejor de ti mismo.",
     "Ábrete al nuevo regalo que el Señor te ofrece con este nuevo año. Sin miedo, entra, con amor, a todo lo que él Señor te ofrece y te ofrecerá.",
@@ -210,3 +210,4 @@ const frases = [
     "Todo lo recibes de Dios; todo lo saborearás si se lo ofreces a Él.",
     "Dios se hace visible y claro en nuestro amor a los hermanos.",
 ];
+
