@@ -208,5 +208,6 @@ const frases = [
     "Deja que entre la sabiduría de Dios en tu parcela profundamente humana.",
     "Confía, tu respuesta, la que te conviene, es fruto de tu diálogo con el Señor.",
     "Todo lo recibes de Dios; todo lo saborearás si se lo ofreces a Él.",
-    "Dios se hace visible y claro en nuestro amor a los hermanos."
+    "Dios se hace visible y claro en nuestro amor a los hermanos.",
 ];
+
