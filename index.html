@@ -77,26 +77,43 @@
   <!-- 🔹 Cargar archivo de frases externo -->
   <script src="frases.js"></script>
 
-  <script>
+<script>
     function nuevaFrase() {
-      if (!frases || frases.length === 0) return;
       const elemento = document.getElementById("frase");
+
+      // 1. Verificación segura (typeof no lanza error si 'frases' no existe)
+      if (typeof frases === 'undefined') {
+        console.error("❌ El archivo frases.js no cargó o tiene errores de sintaxis.");
+        elemento.textContent = "Inspiración en camino... (Por favor, refresca la página)";
+        return;
+      }
+
+      // 2. Verificación de contenido
+      if (frases.length === 0) {
+        elemento.textContent = "No hay frases disponibles.";
+        return;
+      }
+
+      // 3. Selección y efecto visual
       const indice = Math.floor(Math.random() * frases.length);
       elemento.style.opacity = 0;
+      
       setTimeout(() => {
         elemento.textContent = frases[indice];
         elemento.style.opacity = 1;
       }, 200);
     }
 
+    // Cargar frase al iniciar
     window.onload = nuevaFrase;
 
-    // Registrar Service Worker para offline
+    // Registrar Service Worker
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("service-worker.js")
-        .then(() => console.log("✅ Service Worker registrado"))
-        .catch(err => console.error("❌ Error al registrar el Service Worker:", err));
+        .then(() => console.log("✅ Service Worker activo"))
+        .catch(err => console.error("❌ Error en SW:", err));
     }
   </script>
 </body>
 </html>
+
