@@ -9,7 +9,7 @@ const frases = [
     "Solo se vive la sabiduría si la recibes de Dios.",
     "Llenarte de vida es llenarte de los dones de Dios. El camino se hace ligero.",
     "Si te entregas a la voluntad de Dios, abres las puertas a la paz.",
-    "Pon el gozo de la paz que recibes de Dios in todos tus afanes.",
+    "Pon el gozo de la paz que recibes de Dios en todos tus afanes.",
     "Toda fuerza viene del Señor; a Él nuestra mirada.",
     "Nuestra tarea, nuestra misión, nuestra sabiduría, ser testimonio de los deseos de Dios en toda tu realidad.",
     "Mira siempre esa luz especial que nunca se apaga.",
@@ -121,7 +121,7 @@ const frases = [
     "La plegaria te hace escuchar el murmullo de amor de Dios.",
     "No te alejes del Espíritu; encontrarás el camino que te conviene.",
     "Todo egoísmo o interés personal se diluye ante la fuerza del Espíritu.",
-    "Nuestro castillo interior es inexpugnable, si experimentamos la fuerza de ser familia divina.",
+    "Nuestro castillo interior es inexpugnable, si Experimentamos la fuerza de ser familia divina.",
     "La validez y eficacia de tu vida te la marca el amor con que vives todo cuanto te acontece.",
     "Una gran fiesta de Todos los Santos; es nuestro camino y nuestra paz.",
     "Tu vida siempre brillará si le acompaña la esperanza.",
@@ -182,7 +182,7 @@ const frases = [
     "Mira con amor tu familia; es la cuna del amor de Dios; vuestro amor es la aportación más hermosa que podéis hacer a la Iglesia y al mundo.",
     "La claridad nace en la escucha a Dios y a los demás.",
     "El gozo hace su morada en ti, si das a los demás lo mejor de ti mismo.",
-    "Ábrete al nuevo regalo que el Señor te ofrece con este nuevo año. Sin miedo, entra, con amor, a todo lo que el Señor te ofrece y te ofrecerá.",
+    "Ábrete al nuevo regalo que el Señor te ofrece con este nuevo año. Sin miedo, entra, con amor, a todo lo que él Señor te ofrece y te ofrecerá.",
     "Dios confía en ti; y lo que Dios quiere es convertir toda tu vida en bendición constante y amor sin reservas.",
     "Lo que manifiesta un corazón pacificado es un GRACIAS sin reservas.",
     "Con Dios, la vida es suave y ligera; Él siempre es liberación. Si, en cambio, duele, hay que cambiar de dirección.",
@@ -197,7 +197,7 @@ const frases = [
     "La paz real, la que Dios te ofrece, la has de ver reflejado en los demás. Ese es su destino.",
     "Todo lo que ames y a quien ames, todo se convierte en felicidad.",
     "Ama lo que es tu historia; siempre contiene el gozo de un nuevo amanecer.",
-    "Que tengas siempre esos momentos de silencio sonoro; son los que te enseñan el camino de la palabra eficaz.",
+    "Que tengas siempre eso momentos de silencio sonoro; son los que te enseñan el camino de la palabra eficaz.",
     "Eres profeta del Señor, si reflejas en tu vida lo mucho que de Él recibes.",
     "El sagrario de nuestra felicidad y paz se encuentra en nuestro interior; pues bien, eso que vivimos en nuestro interior, es lo que debemos dar a los demás.",
     "Los límites los ponemos en nosotros; con Dios, todo es infinitud al alcance de la mano.",
@@ -210,6 +210,3 @@ const frases = [
     "Todo lo recibes de Dios; todo lo saborearás si se lo ofreces a Él.",
     "Dios se hace visible y claro en nuestro amor a los hermanos."
 ];
-
-
-
