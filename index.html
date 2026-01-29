@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pensamientos para cada día</title>
     <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             margin: 0;
@@ -12,24 +14,33 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            /* El color de fondo se gestionará por JavaScript para que cambie */
             background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', serif;
             text-align: center;
             padding: 20px;
+            transition: background 1s ease;
         }
         #contenedor {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9); /* Un poco más opaco para leer mejor */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            /* Tamaño más ajustado como pediste */
+            max-width: 400px; 
+            width: 85%;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: opacity 0.5s ease-in-out;
         }
         #frase {
-            font-size: 1.5rem;
-            color: #333;
-            line-height: 1.6;
+            font-size: 1.4rem;
+            color: #2c3e50;
+            line-height: 1.5;
             margin: 0;
+            font-style: italic; /* El toque elegante de las imágenes */
         }
     </style>
 </head>
@@ -42,41 +53,44 @@
     <script src="frases.js?v=REFRESCO_TOTAL"></script>
 
     <script> 
+        // Función para generar un degradado aleatorio suave
+        function aplicarFondoAleatorio() {
+            const degradados = [
+                'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+                'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
+                'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)',
+                'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
+                'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
+                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+            ];
+            const elegido = degradados[Math.floor(Math.random() * degradados.length)];
+            document.body.style.background = elegido;
+        }
+
         function nuevaFrase() { 
             const elemento = document.getElementById("frase"); 
+            const contenedor = document.getElementById("contenedor");
 
-            // 1. Verificación de seguridad 
             if (typeof frases === 'undefined') { 
-                console.error("Error: El archivo frases.js no cargó correctamente."); 
-                elemento.textContent = "Inspiración en camino... (Por favor, refresca la página)"; 
+                elemento.textContent = "Inspiración en camino..."; 
                 return; 
             } 
 
-            // 2. Selección aleatoria 
             if (frases.length > 0) { 
+                aplicarFondoAleatorio(); // Cambia el fondo al mismo tiempo
+                
                 const indice = Math.floor(Math.random() * frases.length); 
 
-                // Efecto visual de transición 
-                document.getElementById("contenedor").style.opacity = 0; 
+                contenedor.style.opacity = 0; 
 
                 setTimeout(() => { 
                     elemento.textContent = frases[indice]; 
-                    document.getElementById("contenedor").style.opacity = 1; 
+                    contenedor.style.opacity = 1; 
                 }, 300); 
             } 
         } 
 
-        // Ejecutar al cargar la ventana 
         window.onload = nuevaFrase; 
-
-        // Registro del Service Worker (Comentado correctamente para evitar errores)
-        /*
-        if ('serviceWorker' in navigator) { 
-            navigator.serviceWorker.register('service-worker.js') 
-                .then(() => console.log("Service Worker registrado con éxito")) 
-                .catch(err => console.error("Error al registrar SW:", err)); 
-        }
-        */
     </script> 
-</body> 
+</body>
 </html>
