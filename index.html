@@ -14,33 +14,44 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* El color de fondo se gestionará por JavaScript para que cambie */
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            /* Degradado animado: usamos 400% de tamaño para que se desplace */
+            background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradienteDinamico 15s ease infinite;
             font-family: 'Playfair Display', serif;
             text-align: center;
             padding: 20px;
-            transition: background 1s ease;
+            overflow: hidden;
         }
+
+        /* Definición del movimiento del fondo */
+        @keyframes gradienteDinamico {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         #contenedor {
-            background: rgba(255, 255, 255, 0.9); /* Un poco más opaco para leer mejor */
+            background: rgba(255, 255, 255, 0.85); 
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            /* Tamaño más ajustado como pediste */
-            max-width: 400px; 
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            /* Tamaño ajustado para que sea más estético */
+            max-width: 420px; 
             width: 85%;
-            min-height: 100px;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: opacity 0.5s ease-in-out;
         }
+
         #frase {
             font-size: 1.4rem;
-            color: #2c3e50;
-            line-height: 1.5;
+            color: #34495e;
+            line-height: 1.6;
             margin: 0;
-            font-style: italic; /* El toque elegante de las imágenes */
+            font-style: italic;
         }
     </style>
 </head>
@@ -50,23 +61,9 @@
         <p id="frase">Cargando...</p>
     </div>
 
-    <script src="frases.js?v=REFRESCO_TOTAL"></script>
+    <script src="frases.js?v=1.2"></script>
 
     <script> 
-        // Función para generar un degradado aleatorio suave
-        function aplicarFondoAleatorio() {
-            const degradados = [
-                'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
-                'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
-                'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)',
-                'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
-                'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
-                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-            ];
-            const elegido = degradados[Math.floor(Math.random() * degradados.length)];
-            document.body.style.background = elegido;
-        }
-
         function nuevaFrase() { 
             const elemento = document.getElementById("frase"); 
             const contenedor = document.getElementById("contenedor");
@@ -77,20 +74,23 @@
             } 
 
             if (frases.length > 0) { 
-                aplicarFondoAleatorio(); // Cambia el fondo al mismo tiempo
-                
                 const indice = Math.floor(Math.random() * frases.length); 
 
+                // Efecto de desvanecimiento al cambiar
                 contenedor.style.opacity = 0; 
 
                 setTimeout(() => { 
                     elemento.textContent = frases[indice]; 
                     contenedor.style.opacity = 1; 
-                }, 300); 
+                }, 400); 
             } 
         } 
 
+        // Cargar la frase al iniciar
         window.onload = nuevaFrase; 
+
+        // Opcional: Cambiar la frase automáticamente cada 30 segundos
+        // setInterval(nuevaFrase, 30000);
     </script> 
 </body>
 </html>
