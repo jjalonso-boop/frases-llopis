@@ -41,40 +41,42 @@
 
     <script src="frases.js?v=REFRESCO_TOTAL"></script>
 
-    <script>
-        function nuevaFrase() {
-            const elemento = document.getElementById("frase");
-            
-            // 1. Verificación de seguridad
-            if (typeof frases === 'undefined') {
-                console.error("Error: El archivo frases.js no cargó correctamente.");
-                elemento.textContent = "Inspiración en camino... (Por favor, refresca la página)";
-                return;
-            }
+    <script> 
+        function nuevaFrase() { 
+            const elemento = document.getElementById("frase"); 
 
-            // 2. Selección aleatoria
-            if (frases.length > 0) {
-                const indice = Math.floor(Math.random() * frases.length);
-                
-                // Efecto visual de transición
-                document.getElementById("contenedor").style.opacity = 0;
-                
-                setTimeout(() => {
-                    elemento.textContent = frases[indice];
-                    document.getElementById("contenedor").style.opacity = 1;
-                }, 300);
-            }
+            // 1. Verificación de seguridad 
+            if (typeof frases === 'undefined') { 
+                console.error("Error: El archivo frases.js no cargó correctamente."); 
+                elemento.textContent = "Inspiración en camino... (Por favor, refresca la página)"; 
+                return; 
+            } 
+
+            // 2. Selección aleatoria 
+            if (frases.length > 0) { 
+                const indice = Math.floor(Math.random() * frases.length); 
+
+                // Efecto visual de transición 
+                document.getElementById("contenedor").style.opacity = 0; 
+
+                setTimeout(() => { 
+                    elemento.textContent = frases[indice]; 
+                    document.getElementById("contenedor").style.opacity = 1; 
+                }, 300); 
+            } 
+        } 
+
+        // Ejecutar al cargar la ventana 
+        window.onload = nuevaFrase; 
+
+        // Registro del Service Worker (Comentado correctamente para evitar errores)
+        /*
+        if ('serviceWorker' in navigator) { 
+            navigator.serviceWorker.register('service-worker.js') 
+                .then(() => console.log("Service Worker registrado con éxito")) 
+                .catch(err => console.error("Error al registrar SW:", err)); 
         }
-
-        // Ejecutar al cargar la ventana
-        window.onload = nuevaFrase;
-
-        // Registro del Service Worker
-     //   if ('serviceWorker' in navigator) {
-     //       navigator.serviceWorker.register('service-worker.js')
-     //           .then(() => console.log("Service Worker registrado con éxito"))
-     //           .catch(err => console.error("Error al registrar SW:", err));
-        }
-    </script>
-</body>
+        */
+    </script> 
+</body> 
 </html>
