@@ -5,55 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pensamientos para cada día</title>
     <link rel="manifest" href="manifest.json">
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     
- <style>
-    body {
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        /* Gradiente amplio con varios colores */
-        background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee, #d4fc79);
-        background-size: 400% 400%; /* Tamaño grande para que el movimiento se note */
-        animation: gradienteFluido 15s ease infinite; /* Movimiento constante */
-        font-family: 'Playfair Display', serif;
-        text-align: center;
-        padding: 20px;
-        overflow: hidden;
-    }
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Gradiente con varios colores que fluyen */
+            background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee, #d4fc79);
+            background-size: 400% 400%;
+            animation: gradienteFluido 15s ease infinite;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
 
-    /* Animación que mueve el fondo de posición */
-    @keyframes gradienteFluido {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+        /* Animación para que el fondo se mueva solo */
+        @keyframes gradienteFluido {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    #contenedor {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        max-width: 400px; 
-        width: 85%;
-        min-height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.5s ease-in-out;
-    }
+        #contenedor {
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            /* Tamaño compacto y ajustado */
+            max-width: 400px; 
+            width: 85%;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-in-out;
+        }
 
-    #frase {
-        font-size: 1.4rem;
-        color: #2c3e50;
-        line-height: 1.5;
-        margin: 0;
-        font-style: italic;
-    }
-</style>
-
+        #frase {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            line-height: 1.5;
+            margin: 0;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
 
@@ -61,46 +62,36 @@
         <p id="frase">Cargando...</p>
     </div>
 
-    <script src="frases.js?v=REFRESCO_TOTAL"></script>
+    <script>
+        document.write('<script src="frases.js?v=' + Date.now() + '"><\/script>');
+    </script>
 
     <script> 
-        // Función para generar un degradado aleatorio suave
-        function aplicarFondoAleatorio() {
-            const degradados = [
-                'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
-                'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
-                'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)',
-                'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
-                'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
-                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-            ];
-            const elegido = degradados[Math.floor(Math.random() * degradados.length)];
-            document.body.style.background = elegido;
-        }
-
         function nuevaFrase() { 
             const elemento = document.getElementById("frase"); 
             const contenedor = document.getElementById("contenedor");
 
+            // Verificamos si la variable 'frases' del archivo externo existe
             if (typeof frases === 'undefined') { 
-                elemento.textContent = "Inspiración en camino..."; 
+                setTimeout(nuevaFrase, 200);
                 return; 
             } 
 
             if (frases.length > 0) { 
-                aplicarFondoAleatorio(); // Cambia el fondo al mismo tiempo
-                
+                // Elegimos una frase al azar
                 const indice = Math.floor(Math.random() * frases.length); 
 
+                // Transición suave: desaparece, cambia texto, aparece
                 contenedor.style.opacity = 0; 
 
                 setTimeout(() => { 
                     elemento.textContent = frases[indice]; 
                     contenedor.style.opacity = 1; 
-                }, 300); 
+                }, 400); 
             } 
         } 
 
+        // Se ejecuta al cargar la página
         window.onload = nuevaFrase; 
     </script> 
 </body>
