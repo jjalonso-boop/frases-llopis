@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pensamientos para cada día</title>
-    <link rel="manifest" href="manifest.json">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     
+    <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     
     <style>
@@ -15,7 +18,6 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* Fondo con degradado animado */
             background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee);
             background-size: 400% 400%;
             animation: gradienteDinamico 15s ease infinite;
@@ -25,7 +27,6 @@
             overflow: hidden;
         }
 
-        /* Animación suave del fondo */
         @keyframes gradienteDinamico {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -37,7 +38,6 @@
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            /* Tamaño ajustado y compacto */
             max-width: 420px; 
             width: 85%;
             min-height: 140px;
@@ -63,6 +63,17 @@
     </div>
 
     <script>
+        // 1. ELIMINAR SERVICE WORKERS (Esto descongela la página en móviles)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                    console.log("Service Worker eliminado para actualizar");
+                }
+            });
+        }
+
+        // 2. CARGAR FRASES (Con marcador de tiempo para que sea siempre archivo nuevo)
         document.write('<script src="frases.js?v=' + Date.now() + '"><\/script>');
     </script>
 
@@ -71,18 +82,13 @@
             const elemento = document.getElementById("frase"); 
             const contenedor = document.getElementById("contenedor");
 
-            // Verificamos si la lista de frases cargó
             if (typeof frases === 'undefined') { 
-                // Si no ha cargado, esperamos un instante y reintentamos
                 setTimeout(nuevaFrase, 200);
                 return; 
             } 
 
             if (frases.length > 0) { 
-                // Elegimos frase aleatoria
                 const indice = Math.floor(Math.random() * frases.length); 
-
-                // Efecto visual de transición
                 contenedor.style.opacity = 0; 
 
                 setTimeout(() => { 
@@ -92,9 +98,9 @@
             } 
         } 
 
-        // Se ejecuta automáticamente al terminar de cargar la página
         window.onload = nuevaFrase; 
     </script> 
 </body>
 </html>
+
 
