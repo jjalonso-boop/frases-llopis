@@ -15,7 +15,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* Gradiente con varios colores que fluyen */
+            /* Fondo con degradado animado constante */
             background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee, #d4fc79);
             background-size: 400% 400%;
             animation: gradienteFluido 15s ease infinite;
@@ -23,6 +23,8 @@
             text-align: center;
             padding: 20px;
             overflow: hidden;
+            cursor: pointer; /* Indica que se puede hacer clic */
+            user-select: none; /* Evita que se seleccione el texto al tocar mucho */
         }
 
         @keyframes gradienteFluido {
@@ -34,23 +36,34 @@
         #contenedor {
             background: rgba(255, 255, 255, 0.9); 
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            max-width: 400px; 
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 420px; 
             width: 85%;
-            min-height: 120px;
+            min-height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
+            pointer-events: none; /* Para que el clic pase al fondo 'body' */
         }
 
         #frase {
             font-size: 1.4rem;
             color: #2c3e50;
-            line-height: 1.5;
+            line-height: 1.6;
             margin: 0;
             font-style: italic;
+        }
+
+        /* Pequeña indicación visual opcional en la parte inferior */
+        .instruccion {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            opacity: 0.6;
+            font-family: sans-serif;
         }
     </style>
 </head>
@@ -60,41 +73,48 @@
         <p id="frase">Cargando...</p>
     </div>
 
+    <div class="instruccion">Toca la pantalla para otra frase</div>
+
     <script>
         document.write('<script src="frases.js?v=' + Date.now() + '"><\/script>');
     </script>
 
     <script> 
+        let cargando = false;
+
         function nuevaFrase() { 
+            if (cargando) return; // Evita clics demasiado rápidos
+            
             const elemento = document.getElementById("frase"); 
             const contenedor = document.getElementById("contenedor");
 
-            // Si el archivo frases.js aún no termina de cargar, reintentamos
             if (typeof frases === 'undefined') { 
                 setTimeout(nuevaFrase, 100);
                 return; 
             } 
 
             if (frases.length > 0) { 
-                // Generamos una semilla basada en el tiempo para asegurar aleatoriedad total
-                const semilla = Date.now();
-                const indiceAleatorio = Math.floor((Math.random() * frases.length)); 
+                cargando = true;
+                const indiceAleatorio = Math.floor(Math.random() * frases.length); 
                 
+                // Transición suave
                 contenedor.style.opacity = 0; 
 
                 setTimeout(() => { 
                     elemento.textContent = frases[indiceAleatorio]; 
                     contenedor.style.opacity = 1; 
+                    cargando = false;
                 }, 400); 
             } 
         } 
 
-        // Forzamos la ejecución limpia al cargar la ventana
-        window.onload = function() {
-            nuevaFrase();
-        };
+        // 1. Ejecutar al cargar la página (F5 o entrar)
+        window.onload = nuevaFrase;
 
-        // Si el usuario desliza hacia abajo (refrescar en móvil), forzamos reinicio
+        // 2. Ejecutar al tocar la pantalla o hacer clic
+        document.body.addEventListener('click', nuevaFrase);
+
+        // 3. Solución para refresco real en móviles cuando se pulsa "atrás" o caché persistente
         window.onpageshow = function(event) {
             if (event.persisted) {
                 window.location.reload();
