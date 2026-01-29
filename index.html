@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pensamientos para cada día</title>
     <link rel="manifest" href="manifest.json">
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     
     <style>
@@ -14,7 +15,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* Degradado animado: usamos 400% de tamaño para que se desplace */
+            /* Fondo con degradado animado */
             background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee);
             background-size: 400% 400%;
             animation: gradienteDinamico 15s ease infinite;
@@ -24,7 +25,7 @@
             overflow: hidden;
         }
 
-        /* Definición del movimiento del fondo */
+        /* Animación suave del fondo */
         @keyframes gradienteDinamico {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -32,14 +33,14 @@
         }
 
         #contenedor {
-            background: rgba(255, 255, 255, 0.85); 
+            background: rgba(255, 255, 255, 0.88); 
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            /* Tamaño ajustado para que sea más estético */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            /* Tamaño ajustado y compacto */
             max-width: 420px; 
             width: 85%;
-            min-height: 120px;
+            min-height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -47,8 +48,8 @@
         }
 
         #frase {
-            font-size: 1.4rem;
-            color: #34495e;
+            font-size: 1.35rem;
+            color: #2c3e50;
             line-height: 1.6;
             margin: 0;
             font-style: italic;
@@ -61,22 +62,27 @@
         <p id="frase">Cargando...</p>
     </div>
 
-    <script src="frases.js?v=1.2"></script>
+    <script>
+        document.write('<script src="frases.js?v=' + Date.now() + '"><\/script>');
+    </script>
 
     <script> 
         function nuevaFrase() { 
             const elemento = document.getElementById("frase"); 
             const contenedor = document.getElementById("contenedor");
 
+            // Verificamos si la lista de frases cargó
             if (typeof frases === 'undefined') { 
-                elemento.textContent = "Inspiración en camino..."; 
+                // Si no ha cargado, esperamos un instante y reintentamos
+                setTimeout(nuevaFrase, 200);
                 return; 
             } 
 
             if (frases.length > 0) { 
+                // Elegimos frase aleatoria
                 const indice = Math.floor(Math.random() * frases.length); 
 
-                // Efecto de desvanecimiento al cambiar
+                // Efecto visual de transición
                 contenedor.style.opacity = 0; 
 
                 setTimeout(() => { 
@@ -86,11 +92,9 @@
             } 
         } 
 
-        // Cargar la frase al iniciar
+        // Se ejecuta automáticamente al terminar de cargar la página
         window.onload = nuevaFrase; 
-
-        // Opcional: Cambiar la frase automáticamente cada 30 segundos
-        // setInterval(nuevaFrase, 30000);
     </script> 
 </body>
 </html>
+
