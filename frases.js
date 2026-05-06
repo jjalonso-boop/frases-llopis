@@ -1,5 +1,3 @@
-Aquí tienes el código actualizado del fichero frases.js. He integrado las nuevas frases manteniendo el formato de array de JavaScript para que puedas copiarlo, pegarlo en tu archivo y subirlo directamente a GitHub.
-```javascript
 // Lista de frases — fácil de actualizar o ampliar
 const frases = [
     "Ama cada detalle de tu vida; entrégate con amor; en todo hay un secreto de mayor intensidad de felicidad. Todo irá bien, confía y ama.",
