@@ -11,17 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
     
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* Degradado pastel suave */
-            background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #e2d1c3, #fbc2eb);
-            background-size: 300% 300%;
-            animation: gradienteFluido 20s ease infinite;
-            
+            background-color: #e0c3fc; /* Color base para evitar saltos blancos */
             font-family: 'Montserrat', sans-serif;
             text-align: center;
             padding: 40px;
@@ -29,6 +29,20 @@
             cursor: pointer;
             user-select: none;
             -webkit-user-select: none;
+        }
+
+        /* Capa de fondo fija que no se reinicia al hacer clic */
+        .fondo-animado {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #e2d1c3, #fbc2eb);
+            background-size: 300% 300%;
+            animation: gradienteFluido 20s ease infinite;
+            will-change: background-position;
         }
 
         @keyframes gradienteFluido {
@@ -40,8 +54,9 @@
         #contenedor {
             max-width: 800px; 
             width: 90%;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.4s ease;
             pointer-events: none;
+            opacity: 1;
         }
 
         #frase {
@@ -75,15 +90,16 @@
 </head>
 <body>
 
+    <div class="fondo-animado"></div>
+
     <div id="contenedor">
         <p id="frase">Cargando...</p>
     </div>
 
     <div class="instruccion">Toca para meditar otra frase</div>
 
-    <script>
-        document.write('<script src="frases.js?v=' + Date.now() + '"><\/script>');
-    </script>
+    <!-- Carga limpia del script de frases -->
+    <script src="frases.js"></script>
 
     <script> 
         let cargando = false;
@@ -94,40 +110,27 @@
             const elemento = document.getElementById("frase"); 
             const contenedor = document.getElementById("contenedor");
 
-            if (typeof frases === 'undefined') { 
-                setTimeout(nuevaFrase, 200);
+            if (typeof frases === 'undefined' || !frases.length) { 
+                setTimeout(nuevaFrase, 100);
                 return; 
             } 
 
-            if (frases.length > 0) { 
-                cargando = true;
-                const indiceAleatorio = Math.floor(Math.random() * frases.length); 
-                
-                contenedor.style.opacity = 0; 
+            cargando = true;
+            const indiceAleatorio = Math.floor(Math.random() * frases.length); 
+            
+            // Transición limpia de desvanecimiento solo en el texto
+            contenedor.style.opacity = 0; 
 
-                setTimeout(() => { 
-                    elemento.textContent = frases[indiceAleatorio]; 
-                    contenedor.style.opacity = 1; 
-                    cargando = false;
-                }, 500); 
-            } 
+            setTimeout(() => { 
+                elemento.textContent = frases[indiceAleatorio]; 
+                contenedor.style.opacity = 1; 
+                cargando = false;
+            }, 400); 
         } 
 
-        window.onload = nuevaFrase;
+        // Escuchadores de eventos optimizados
+        window.addEventListener('DOMContentLoaded', nuevaFrase);
         document.body.addEventListener('click', nuevaFrase);
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                cargando = false; 
-                nuevaFrase();
-            }
-        });
-
-        /* Solucionado: se eliminó window.location.reload() que causaba el parpadeo */
-        window.onpageshow = function(event) {
-            cargando = false;
-            nuevaFrase();
-        };
     </script> 
 </body>
 </html>
